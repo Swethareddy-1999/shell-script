@@ -8,6 +8,7 @@ then
     #exit 1 #other then 0
 fi
 
-dnf install mysql -y
+yum install mysql -y
 
-dnf install git -y
+yum install git -y
+yum install docker -y
