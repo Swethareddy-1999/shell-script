@@ -10,7 +10,7 @@ fi
 
 yum list installed mysql
 
-if [$? -ne 0 ]
+if [ $? -ne 0 ]
 then  #not installed
     if [ $? -eq 0 ] #$?privious output will come here as input
     then    
