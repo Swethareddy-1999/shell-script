@@ -20,7 +20,7 @@ VALIDATE(){
     fi
 }
 
-echo "Script started excuting at: $TIMESTAMP" &>>$LOG_FILE
+echo "Script started excuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
 if [ $USERID -ne 0 ] #ne=not equal
 then 
@@ -28,11 +28,11 @@ then
     exit 1 #other then 0
 fi
 
-yum list installed mysql &>>$LOG_FILE
+yum list installed mysql &>>$$LOG_FILE_NAME
 
 if [ $? -ne 0 ]
 then  
-    yum install mysql -y &>>$LOG_FILE
+    yum install mysql -y &>>$$LOG_FILE_NAME
     VALIDATE $? "Installing Mysql" # here validate is the function, $? is input1, installing mysql is input2.
 else
     echo "mysql is already ...$Y installed"
@@ -41,11 +41,11 @@ fi
 
 
 
-yum list installed git &>>$LOG_FILE
+yum list installed git &>>$$LOG_FILE_NAME
 
 if [ $? -ne 0 ]
 then    
-    yum install git -y &>>$LOG_FILE
+    yum install git -y &>>$$LOG_FILE_NAME
     VALIDATE $? "Installing Git"
 else
     echo "Git is aleady ... $Y Installed"
