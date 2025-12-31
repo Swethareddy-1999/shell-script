@@ -34,5 +34,6 @@ then
     else
         echo "installing git ... success"
     fi        
-
+else # if sql instlled excute this stmt
+    echo "mysql is already ...installed"
 fi
