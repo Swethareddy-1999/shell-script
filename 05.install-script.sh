@@ -11,7 +11,7 @@ fi
 yum list installed mysql-server # it will get o/p sql is installed or not
 if [ $? -ne 0 ] # not installed mysql execute this stmnt
 then  
-    yum install mysql -y
+    yum install mysql-server -y
     if [ $? -ne 0 ] # privious output will come here as input
     then    
         echo "Installing Mysql-server ...failure"
