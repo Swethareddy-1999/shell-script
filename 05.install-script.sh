@@ -24,7 +24,7 @@ fi
 
 
 yum list installed git
-if [$? -ne 0] # if not istlled git
+if [ $? -ne 0 ] # if not istlled git
 then 
     yum install git -y
     if [ $? -ne 0 ]
