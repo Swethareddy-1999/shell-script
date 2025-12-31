@@ -32,4 +32,4 @@ do
     else
         echo -e "$package is alredy $Y .. installed"    
         fi
-    done    
+done    
