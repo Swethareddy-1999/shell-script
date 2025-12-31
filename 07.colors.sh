@@ -1,14 +1,17 @@
 #!bin/bash
 
 USERID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+y="\e[31m"
 
 VALIDATE(){
     if [ $1 -ne 0 ] #$?privious output will come here as input
     then    
-        echo "$2 ...failure"
+        echo "$2 ...$R failure"
         exit 1
     else
-        echo "$2 ... success"
+        echo "$2 ... $g success"
     fi
 }
 
@@ -25,7 +28,7 @@ then
     yum install mysql -y
     VALIDATE $? "Installing Mysql" # here validate is the function, $? is input1, installing mysql is input2.
 else
-    echo "mysql is already ...installed"
+    echo "mysql is already ...$Y installed"
 fi
 
 
@@ -38,6 +41,6 @@ then
     yum install git -y
     VALIDATE $? "Installing Git"
 else
-    echo "Git is aleady ... Installed"
+    echo "Git is aleady ... $Y Installed"
 fi        
 
