@@ -20,7 +20,7 @@ fi
 
 yum list installed mysql
 
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then  
     yum install mysql -y
     VALIDATE $? "Installing Mysql" # here validate is the function, $? is arg1, installing mysql is arg2.
@@ -33,9 +33,9 @@ fi
 
 yum list installed git
 
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then    
-    dnf install git -y
+    yum install git -y
     VALIDATE $? "Installing Git"
 else
     echo "Git is aleady ... Installed"
