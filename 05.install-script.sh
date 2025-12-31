@@ -5,7 +5,7 @@ USERID=$(id -u)
 if [ $USERID -eq 0 ] #ne=not eqaul
 then 
     echo "ERROR:: you must have sudo access to excute this script"
-    #exit 1 # used for if the above o/p is success and it should be any num other then 0
+    #exit 1 # it will exit from here above o/p is wrong and it should be any num other then 0
 fi
 
 yum list installed mysql # it will get o/p sql is installed or not
@@ -35,3 +35,4 @@ then
         echo "installing git ... success"
     fi        
 
+fi
