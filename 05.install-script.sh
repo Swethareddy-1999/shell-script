@@ -2,10 +2,10 @@
 
 USERID=$(id -u)
 
-if [ $USERID -ne 0 ] #ne=not eqaul
+if [ $USERID -eq 0 ] #ne=not eqaul
 then 
     echo "ERROR:: you must have sudo access to excute this script"
-    # exit 1 # it should be any num other then 0
+    #exit 1 # used for if the above o/p is success and it should be any num other then 0
 fi
 
 yum list installed mysql # it will get o/p sql is installed or not
@@ -14,7 +14,7 @@ then
     if [ $? -ne 0 ] # privious output will come here as input
     then    
         echo "Installing Mysql ...failure"
-        exit 1 # 
+        exit 1 
     else
         echo "installing mysql ... success"
     fi
