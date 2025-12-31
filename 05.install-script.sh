@@ -5,7 +5,7 @@ USERID=$(id -u)
 if [ $USERID -ne 0 ] #ne=not eqaul
 then 
     echo "ERROR:: you must have sudo access to excute this script"
-    exit 1 # is used for if above stmt is failed thn the excution have to stop here and it should be any num other then 0
+    # exit 1 # is used for if above stmt is failed thn the excution have to stop here and it should be any num other then 0
 fi
 
 yum list installed mysql-server # it will get o/p sql is installed or not
