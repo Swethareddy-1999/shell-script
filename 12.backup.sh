@@ -55,7 +55,7 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
 echo "Files are: $FILES"
 
 if [ -n "$FILES" ] # true if there are files to zip or tar  (cmd: sh 12.backup.sh <sourecefile> <dest file> <any num ex:12> or <empty it will take default(14 days)))
-then                 /# -n: non zero   
+then                 # -n: non zero   
     echo "files are: $FILES" #sudo dnf install zip -y
     ZIP_FILE="$DEST_DIR/swetha.logs-$TIMESTAMP.zip"
     find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE"
