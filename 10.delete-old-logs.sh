@@ -5,8 +5,10 @@ R="\e[31m"
 G="\e[32m"
 y="\e[31m"
 
+SOURCE_DIR="/home/ec2-user/app-logs"
+
 LOGS_FOLDER="/var/log/shellscript-logs"
-LOG_FILE=$( echo $0 | cut -d "." -f1 )
+LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
@@ -30,16 +32,5 @@ CHECK_ROOT(){
 
 echo "Script started excuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
-CHECK_ROOT
-
-for package in $@
-do 
-    dnf list installed $package &>>$LOG_FILE_NAME
-    if [ $? -ne 0 ]
-    then
-        dnf install $package -y &>>$LOG_FILE_NAME
-        VALIDATE $? "Installing $package"
-    else
-        echo -e "$package is alredy $Y .. installed"    
-        fi
-done    
+FILES _TO_DELETE=$(find $SOURCE_DIR -name "*.log" -mtime +14)
+echo "files to be deleted: $FILES_TO_DELETE" 
