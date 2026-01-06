@@ -42,13 +42,13 @@ fi
 
 if [ ! -d $SOURCE_DIR ]
 then
-    echo - "$SOURCE_DIR Does not exist plese check"
+    echo -e "$SOURCE_DIR Does not exist plese check"
     exit 1
 fi  
 
 if [ ! -d $DEST_DIR ]
 then
-    echo - "$DEST_DIR Does not exist plese check"
+    echo -e "$DEST_DIR Does not exist plese check"
     exit 1
 fi 
 
