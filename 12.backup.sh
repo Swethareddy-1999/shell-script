@@ -18,15 +18,6 @@ LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
-VALIDATE(){
-    if [ $1 -ne 0 ] #$?privious output will come here as input
-    then    
-        echo "$2 ...$R failure"
-        exit 1
-    else
-        echo "$2 ... $G success"
-    fi
-}
 
 USAGE(){
     echo -e "$R USAGE:: $N sh 12.backup.sh <SOURCE_DIR> <DEST_DIR> <DAYS(Optiional)>"
@@ -64,10 +55,23 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
 echo "Files are: $FILES"
 
 if [ -n "$FILES" ] # true if there are files to zip or tar  (cmd: sh 12.backup.sh <sourecefile> <dest file> <any num ex:12> or <empty it will take default(14 days)))
-then
+then                 /# -n: non zero   
     echo "files are: $FILES" #sudo dnf install zip -y
     ZIP_FILE="$DEST_DIR/swetha.logs-$TIMESTAMP.zip"
     find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE"
+    if [ -f "$ZIP_FILE"]
+    then
+        echo -e "successfully created zip file for files older then $DAYS"
+        while read -r filepath #here file path isthe varible name you can give anyname
+        do
+            echo "DELETING file: $filepath" &>>$LOG_FILE_NAME #zip file created then only files will be delete  
+            rm -rf $filepath
+            echo "Deletd file: $filepath"
+        done <<< $FILES
+    else
+        echo -e "$R Error:: $N failed to create Zip file"
+        exit 1
+    fi    
 else
     echo " No files found older then $DAYS"
 fi    
