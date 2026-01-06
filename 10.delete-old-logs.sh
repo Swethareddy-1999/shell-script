@@ -5,7 +5,7 @@ R="\e[31m"
 G="\e[32m"
 y="\e[31m"
 
-SOURCE_DIR="/home/ec2-user/expense-shell"
+SOURCE_DIR="/home/ec2-user/app.logs"
 
 LOGS_FOLDER="/var/log/shellscript-logs"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
@@ -32,7 +32,7 @@ CHECK_ROOT(){
 
 echo "Script started excuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
-FILES_TO_DELETE=$(find $SOURCE_DIR -name "*.log" -mtime +14)
+FILES_TO_DELETE=$(find $SOURCE_DIR -name "*.log" -mtime +14) # deleting the more 14 days logs in expense-shell.logs
 echo "files to be deleted: $FILES_TO_DELETE" 
 
 while read -r file
@@ -40,3 +40,5 @@ do
     echo "DELETING file: $file"
     rm -rf $file
 done <<< $FILES_TO_DELETE
+
+# while loop mostly used in deleted the log files
