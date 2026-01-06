@@ -35,12 +35,16 @@ USAGE(){
 
 mkdir -p /home/ec2-user/shellscript-logs/
 
-if [ $# -lt 2 ]
+#usage 1
+
+if [ $# -lt 2 ] # $#: no.of parameters lessthen 2 files
 then
     USAGE
 fi
 
-if [ ! -d $SOURCE_DIR ]
+#usage2
+
+if [ ! -d $SOURCE_DIR ] # ! means false; and if $source_dir not there it will also false(f*f=s)
 then
     echo -e "$SOURCE_DIR Does not exist plese check"
     exit 1
@@ -55,3 +59,6 @@ fi
 echo "Script started excuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
 
+FILES=(find $SOURCE_DIR -name "*.log" +mtime $DAYS)
+
+echo "Files are: $FILES"
